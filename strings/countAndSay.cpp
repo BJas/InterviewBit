@@ -1,22 +1,33 @@
 #include<iostream>
+#include<algorithm>
 using namespace std;
 string countAndSay(int n) {
   string res = "1";
-  for(int i=0; i<n; i++) {
-    int j = 0, last = -1, count = 1;
+  for(int i=0; i<n-1; i++) {
+    int j=0, count = 1, last = res[0] - '0';
     string temp = "";
     while(j<res.size()) {
-      int number = res[j] - '0';
-      if(last == number)
-        count++;
-      else if(last != -1) {
-        char l = number + '0';
+      int t = res[j] - '0';
+      if(last == t)
+        if(j==0)
+          count=1;
+        else
+          count++;
+      else {
         char c = count + '0';
-        temp += l;
+        char l = last + '0';
         temp += c;
+        temp += l;
+        last = t;
         count = 1;
       }
-      last = number;
+      if(j+1==res.size()) {
+        char c = count + '0';
+        char l = last + '0';
+        temp += c;
+        temp += l;
+        break;
+      }
       j++;
     }
     res = temp;
