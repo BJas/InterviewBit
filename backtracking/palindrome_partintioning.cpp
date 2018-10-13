@@ -23,7 +23,13 @@ void getPalindrome(string s, vector<string> &subset, vector<vector<string> > &re
     current += s[i];
     if(isPalindrome(current)) {
       subset.push_back(current);
+      printf("Subset:\n");
+      for (size_t i = 0; i < subset.size(); i++) {
+        cout<<subset[i]<<" ";
+      }
+      printf("\n");
       getPalindrome(s, subset, result, i+1);
+      printf("Pops\n");
       subset.pop_back();
     }
   }
