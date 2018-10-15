@@ -21,9 +21,11 @@ void getPalindrome(string s, vector<string> &subset, vector<vector<string> > &re
   string current = "";
   for(int i=index; i<s.size(); i++)  {
     current += s[i];
+    cout<<current<<endl;
     if(isPalindrome(current)) {
       subset.push_back(current);
       getPalindrome(s, subset, result, i+1);
+      cout<<"pops"<<endl;
       subset.pop_back();
     }
   }
