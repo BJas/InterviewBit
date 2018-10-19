@@ -6,18 +6,28 @@ using namespace std;
 int main() {
   string str;
   cin>>str;
-  map<char, int> m;
-  int max_len = 0, len = 0, left = 0;
-  for(int i=0; i<str.size(); i++) {
-    if(m.find(str[i])!=m.end()) {
-      if(len>max_len)
-        max_len = len;
-      len = i - left;
-      left = i;
+  map<char, bool> m;
+  int i=0, j=0, max_len = 0, temp = 0;
+  while(j<str.size()) {
+    if(m.find(str[j]) != m.end()) {
+      while(str[i]!=str[j]) {
+        m.erase(str[i]);
+        i++;
+        temp--;
+      }
+      if(i != j) {
+        i++;
+      }
+      temp--;
+      m.erase(str[j]);
     } else {
-      m[str[i]] = i;
-      len++;
+      m[str[j]] = true;
+      temp++;
+      j++;
+    }
+    if(max_len<temp) {
+      max_len = temp;
     }
   }
-  cout<<max(len, max_len);
+  cout<<max_len;
 }
