@@ -30,11 +30,7 @@ void getPalindrome(string s, vector<string> &subset, vector<vector<string> > &re
       }
       printf("\n");
       getPalindrome(s, subset, result, i+1);
-<<<<<<< HEAD
-      cout<<"pops"<<endl;
-=======
       printf("Pops\n");
->>>>>>> b854c37d03c8deb054b714acbfde80ee16aae255
       subset.pop_back();
     }
   }
