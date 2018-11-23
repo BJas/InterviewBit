@@ -14,20 +14,28 @@ struct Node {
 void postOrder(Node* root) {
   vector<int> result;
   stack<Node*> st;
-  while(root || !st.empty()) {
-    if(!root) {
-      root = st.top();
-      st.pop();
-      root = root->right;
-      result.push_back(root->data);
-    } else {
-      st.push(root);
-      root = root->left;
-    }
+  stack<int> resultSt;
+  st.push(root);
+  while(!st.empty()) {
+    root = st.top();
+    st.pop();
+    resultSt.push(root->data);
+    if(root->left) st.push(root->left);
+    if(root->right) st.push(root->right);
+  }
+  while(!resultSt.empty()) {
+    result.push_back(resultSt.top());
+    resultSt.pop();
   }
 
   for(int i=0; i<result.size(); i++)
     cout<<result[i]<<" ";
+}
+void recursivePostorder(Node* root) {
+  if(!root) return;
+  recursivePostorder(root->left);
+  recursivePostorder(root->right);
+  cout<<root->data<<" ";
 }
 Node* insert(int data, Node* root) {
   Node* current = new Node(data);
@@ -48,5 +56,7 @@ int main() {
   root = insert(3, root);
   root = insert(6, root);
   postOrder(root);
+  cout<<endl;
+  recursivePostorder(root);
   return 0;
 }
