@@ -12,7 +12,7 @@ int main() {
     }
   }
   vector<int> row(n, 0), col(n, 0);
-  for(int i=0; i<m; i++) {
+  for(int i=0; i<n; i++) {
     for(int j=0; j<n; j++) {
       if(a[i][j] == 0) {
         row[i]++;
